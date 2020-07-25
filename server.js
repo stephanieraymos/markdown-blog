@@ -4,7 +4,7 @@ const app = express();
 
 app.set('view engine', 'ejs') //writing all views with ejs
 
-app.use('/articles', articleRouter)
+app.use(express.urlencoded({ extended: false })) //Access all parameters from article form in our article route by accessing req.body.parameterName
 
 app.get('/', (req, res) => {
   const articles = [{
@@ -19,5 +19,7 @@ app.get('/', (req, res) => {
   }]
   res.render('articles/index', { articles: articles })
 })
+
+app.use('/articles', articleRouter) //Moved to bottom to make sure it comes after everything else 
 
 app.listen(5000)
