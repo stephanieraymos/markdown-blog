@@ -20,8 +20,16 @@ const articleSchema = new mongoose.Schema({
   slug: {
     type: String,
     required: true,
-    unique: true
+    unique: true //making sure two articles don't have the same title/slug
   }
+})
+
+articleSchema.pre('validate', function(next) { //run this function right before we do validation on our article every single time we save, update, delete ect
+  if (this.title) {
+    this.slug = slugify(this.title, { lower: true, strict: true }) //forces slugify to get rid of any characters that don't fit into the url
+  }
+
+  next()
 })
 
 module.exports = mongoose.model('Article', articleSchema)
