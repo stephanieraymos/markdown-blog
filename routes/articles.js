@@ -4,10 +4,13 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Article = require('./../models/article');
 const router = express.Router();
+const { MONGO_URI } = require('./../config')
 
-mongoose.connect('mongodb://localhost/blog', { 
-  useUnifiedTopology: true, useNewUrlParser: true 
-})
+mongoose.connect(MONGO_URI, {   
+  useCreateIndex: true,
+  useFindAndModify: false,
+  useNewUrlParser: true,
+  useUnifiedTopology: true })
 
 router.get('/new', (req, res) => {
   res.render('articles/new', { article: new Article() }) 
