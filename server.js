@@ -16,7 +16,7 @@ app.set('view engine', 'ejs') //writing all views with ejs
 app.use(express.urlencoded({ extended: false })) //Access all parameters from article form in our article route by accessing req.body.parameterName
 
 app.get('/', async (req, res) => {
-  const articles = await Article.find() //grabbing every single article
+  const articles = await Article.find().sort({ createdAt: 'desc' }) //grabbing every single article + sorting in descending order
   res.render('articles/index', { articles: articles })
 })
 
