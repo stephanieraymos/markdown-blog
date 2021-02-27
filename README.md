@@ -1,6 +1,8 @@
 # markdown-blog
 Super simple blog using Node with Mongoose and Express
 
+## [Live Project](https://my-markdown-blog.netlify.app/)
+
 ## Dependencies used: 
 **-dompurify:** DOMPurify is a sanitizer for HTML, MathML and SVG. Written in JavaScript and works in all modern browsers.
 
